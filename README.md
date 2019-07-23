@@ -16,7 +16,13 @@ If you have Python already installed or you are on a Mac, ignore this part. You 
 
 You can use the virtualenv package to start the project. use *pip install virtualenv* to install the package on your machine.
 
-### Download the Project
+### Download The Webdrivers
 
-TODO: Get the GitHub link and make the respective content here
+In order for Selenium to work on browsers, we need to install the respective drivers for a web browsers. I have some popular drivers listed below
+along with the download.
+
+* Chrome: [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
+* Firefox: [geckodriver](https://github.com/mozilla/geckodriver/releases)
+* Opera: [operariver](https://github.com/operasoftware/operachromiumdriver/releases)
+* Edge: [edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 

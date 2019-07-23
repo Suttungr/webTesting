@@ -26,3 +26,30 @@ along with the download.
 * Opera: [operariver](https://github.com/operasoftware/operachromiumdriver/releases)
 * Edge: [edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
+Make sure to add the folder that contains the drivers into your machine's path.
+
+### Download The Project From GitHub
+
+Make sure to clone / download the project into the directory you want by using the command line or terminal. 
+Once you are in the directory you want the project to be in, type *git clone https://github.com/Suttungr/webTesting.git* .
+Or you can go to the [GitHub page](https://github.com/Suttungr/webTesting) and download the project by clicking the green button, 
+and select "Download ZIP".
+
+## Setup The Project
+
+Because this project is based in a little bubble of Python, we're gonna have to activate the environment and download the requirements.
+
+### Activate The Virtual Environment
+
+Once the project is downloaded, make sure to start the virtual environment. 
+
+1. Navigate to the *webTesting* directory
+2. Type *venv\Scripts\activate* to activate the virtual environment
+
+You can tell if the environment is active if at the beginning of the prompt has this text: *(venv)* . In order to deactivate the environment,
+just type *deactivate* .
+
+### Download The Requirements
+
+There is a file present called *requirements.txt* that we will use to download the necessary requirements.
+Simply type *pip install -r requirements.txt* to download all the necessary requirements. Make sure the environment is active.

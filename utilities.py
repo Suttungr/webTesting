@@ -31,3 +31,25 @@ def getDriver():
 
     return driverDict
 
+# Prints all the links in the page
+def printLinks(driver):
+    links = driver.find_elements_by_xpath("//a[@href]")
+
+    for link in links:
+        print(link.get_attribute("href"))
+
+def testAllLinks(driver):
+    links = driver.find_elements_by_xpath("//a[@href]")
+
+    # Send HTTP request and read it
+    for link in links:
+        pass
+
+    # Check if the code is valid or broken
+
+    # Loop through this
+
+    pass
+
+def getTitle(driver):
+    return driver.title

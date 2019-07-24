@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
+# Function that just gets the title of Chrome home page
 def getChromeTitle():
     driverDict = getDriver()
 
@@ -13,6 +14,7 @@ def getChromeTitle():
     title = driver.title
     print("The title is: " + title)
 
+# Function that returns a dict for all executable drivers, see below
 # Make sure to change your path based on your machine
 def getDriver():
     chromePath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\chromedriver.exe"

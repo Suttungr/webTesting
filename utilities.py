@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 # Function that just gets the title of Chrome home page
 def getChromeTitle():
     driverDict = getDriver()
@@ -42,9 +43,7 @@ def testAllLinks(driver):
     links = driver.find_elements_by_xpath("//a[@href]")
 
     # Send HTTP request and read it
-    for link in links:
-        pass
-
+    
     # Check if the code is valid or broken
 
     # Loop through this

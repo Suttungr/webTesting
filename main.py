@@ -21,7 +21,5 @@ if __name__ == "__main__":
     theTitle = getTitle(driver)
     print("The title of the web page is: " + theTitle)
 
-    printLinks(driver)
-
     # Closes the browser window
     driver.close()

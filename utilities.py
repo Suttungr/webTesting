@@ -1,4 +1,5 @@
 from selenium import webdriver
+import requests
 
 # Function that just gets the title of Chrome home page
 def getChromeTitle():
@@ -29,6 +30,7 @@ def getDriver():
     }
 
     return driverDict
+
 # Stores all links in the page as an array
 def storeLinks(driver):
     links = driver.find_elements_by_xpath("//a[@href]")
@@ -40,12 +42,56 @@ def storeLinks(driver):
 
     return linkArray
 
+def testAllLinks(driver):
+    linkArray = storeLinks(driver)
+
+    for link in linkArray:
+        
+        response = requests.get(link)
+        status = response.status_code
+        category = "The request category is: "
+
+        if status >= 100 and status < 200:
+            print("Link: " + link)
+            print("status code for this link: " + str(status))
+            print(category + " Informational")
+            print("No issues/n")
+
+        if status >= 200 and status < 300:
+            print("Link: " + link)
+            print("status code for this link: " + str(status))
+            print(category + " Successful")
+            print("Request successfully received\n")
+
+        if status >= 300 and status < 400:
+            print("Link: " + link)
+            print("status code for this link: " + str(status))
+            print(category + " Redirection")
+            print("Further action needed to navigate here\n")
+
+        if status >= 400 and status < 500:
+            print("Link: " + link)
+            print("status code for this link: " + str(status))
+            print(category + " Client Error")
+            print("Broken Link\n")
+
+        if status >= 500 and status < 600:
+            print("Link: " + link)
+            print("status code for this link: " + str(status))
+            print(category + " Server Error")
+            print("Broken Link\n")
+
 # Prints all the links in the page
 def printLinks(driver):
     links = driver.find_elements_by_xpath("//a[@href]")
+    index = 0
 
     for link in links:
-        print(link.get_attribute("href"))
+        index += 1
+
+        print(link.get_attribute("href") + "\n")
+
+    print("Number of links: " + str(index))
 
 def getTitle(driver):
     return driver.title

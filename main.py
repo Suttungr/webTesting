@@ -13,11 +13,11 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(chromedriver)
 
     # The URL to test
-    testURL = "https://www.cefns.nau.edu/capstone/projects/CS/2019/GitOSSum-S19/index.html"
+    testURL = "https://google.com/"
 
     driver.get(testURL)
 
-    allLinks = storeLinks(driver)
+    testAllLinks(driver)
     
 
     # Closes the browser window

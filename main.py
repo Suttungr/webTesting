@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
 from utilities import *
 
 if __name__ == "__main__":
@@ -18,8 +17,8 @@ if __name__ == "__main__":
 
     driver.get(testURL)
 
-    theTitle = getTitle(driver)
-    print("The title of the web page is: " + theTitle)
+    allLinks = storeLinks(driver)
+    
 
     # Closes the browser window
     driver.close()

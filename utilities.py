@@ -1,6 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-
 
 # Function that just gets the title of Chrome home page
 def getChromeTitle():
@@ -31,6 +29,16 @@ def getDriver():
     }
 
     return driverDict
+# Stores all links in the page as an array
+def storeLinks(driver):
+    links = driver.find_elements_by_xpath("//a[@href]")
+    linkArray = []
+
+    for link in links:
+        indexLink = link.get_attribute("href")
+        linkArray.append(indexLink)
+
+    return linkArray
 
 # Prints all the links in the page
 def printLinks(driver):
@@ -39,16 +47,7 @@ def printLinks(driver):
     for link in links:
         print(link.get_attribute("href"))
 
-def testAllLinks(driver):
-    links = driver.find_elements_by_xpath("//a[@href]")
-
-    # Send HTTP request and read it
-    
-    # Check if the code is valid or broken
-
-    # Loop through this
-
-    pass
-
 def getTitle(driver):
     return driver.title
+
+

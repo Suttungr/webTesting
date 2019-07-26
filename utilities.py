@@ -1,6 +1,5 @@
 from selenium import webdriver
 import requests
-import re
 
 # Function that just gets the title of Chrome home page
 def getChromeTitle():

@@ -57,7 +57,4 @@ Simply type *pip install -r requirements.txt* to download all the necessary requ
 ## Run The Script
 
 Once the venv (virtual environment) is active, type *python main.py* to run the script.
-
-## Known Issues
-
-There is an issue with parsing "tel:" and "mailto:" links as they do not return an HTTP request.
+Make sure to go into the "main.py" file to change the test URL and browser if need be.

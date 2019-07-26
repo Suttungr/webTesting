@@ -17,8 +17,9 @@ if __name__ == "__main__":
 
     driver.get(testURL)
 
-    testAllLinks(driver)
-    
+    getAllGoodLinks(driver)
+    getAllRedirects(driver)
+    getAllBrokenLinks(driver)
 
     # Closes the browser window
     driver.close()

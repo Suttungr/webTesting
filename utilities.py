@@ -1,5 +1,6 @@
 from selenium import webdriver
 import requests
+import re
 
 # Function that just gets the title of Chrome home page
 def getChromeTitle():
@@ -80,6 +81,57 @@ def testAllLinks(driver):
             print("status code for this link: " + str(status))
             print(category + " Server Error")
             print("Broken Link\n")
+
+def getAllGoodLinks(driver):
+    linkArray = storeLinks(driver)
+    linkNumber = 0
+
+    for link in linkArray:
+        response = requests.get(link)
+        status = response.status_code
+
+        if status >= 100 and status < 300:
+            linkNumber += 1
+
+            print("Link: " + link)
+            print("The link is not broken")
+            print("Actual status code: " + str(status) + "\n")
+        
+    print("Number of good links: " + str(linkNumber))    
+
+def getAllRedirects(driver):
+    linkArray = storeLinks(driver)
+    linkNumber = 0
+
+    for link in linkArray:
+        response = requests.get(link)
+        status = response.status_code
+
+        if status >= 300 and status < 400:
+            linkNumber += 1
+
+            print("link: " + link)
+            print("This link is a redirect, further actions required")
+            print("Actual status code: " + str(status) + "\n")
+
+    print("Number of redirect links: " + str(linkNumber))
+
+def getAllBrokenLinks(driver):
+    linkArray = storeLinks(driver)
+    linkNumber = 0
+
+    for link in linkArray:
+        response = requests.get(link)
+        status = response.status_code
+
+        if status >= 400 and status < 600:
+            linkNumber += 1
+
+            print("The link is: " + link)
+            print("This link is broken!!")
+            print("Actual status code: " + str(status) + "\n")
+
+    print("Number of broken links: " + str(linkNumber))
 
 # Prints all the links in the page
 def printLinks(driver):

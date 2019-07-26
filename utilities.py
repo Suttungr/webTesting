@@ -55,6 +55,24 @@ def printLinks(driver):
 
     print("Number of links: " + str(index))
 
+def testForGoodLinks(driver):
+    allLinks = storeLinks(driver)
+    linkNumber = 0
+
+    for link in allLinks:
+        try:
+            response = requests.get(link)
+            status = response.status_code
+
+            if status >= 100 and status < 300:
+                print("The link is: " + link)
+                print("This link is okay")
+                print("Actual status code is: " + str(status) + "\n\n")
+
+        except InvalidSchema as schemaErr:
+            print("link: " + link)
+            print("This is either an email or a telephone, there is no HTTP status code\n\n")
+
 def testAllLinks(driver):
     allLinks = storeLinks(driver)
 
@@ -64,7 +82,7 @@ def testAllLinks(driver):
 
         except InvalidSchema as schemaErr:
             print("link: " + link)
-            print("This is either an email or a telephone, there is no HTTP status code\n")
+            print("This is either an email or a telephone, there is no HTTP status code\n\n")
 
         else:
             status = response.status_code

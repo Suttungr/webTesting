@@ -14,11 +14,11 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(chromedriver)
 
     # The URL to test
-    testURL = "https://nau.edu/"
+    testURL = "https://www.cefns.nau.edu/capstone/projects/CS/2019/GitOSSum-S19/index.html"
 
     driver.get(testURL)
 
-    exceptionLinkTesting(driver)
+    testForGoodLinks(driver)
 
     # Closes the browser window
     driver.close()

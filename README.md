@@ -26,7 +26,8 @@ along with the download.
 * Opera: [operariver](https://github.com/operasoftware/operachromiumdriver/releases)
 * Edge: [edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
-Make sure to add the folder that contains the drivers into your machine's path.
+Make sure to add the folder that contains the drivers into your machine's path. [Here](https://docs.alfresco.com/4.2/tasks/fot-addpath.html) is a mini
+article to add a folder to your path. Make sure that folder contains the webdrivers!
 
 ### Download The Project From GitHub
 

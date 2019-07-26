@@ -1,5 +1,6 @@
 from selenium import webdriver
 import requests
+from requests.exceptions import InvalidSchema
 
 # Function that just gets the title of Chrome home page
 def getChromeTitle():
@@ -40,97 +41,7 @@ def storeLinks(driver):
         indexLink = link.get_attribute("href")
         linkArray.append(indexLink)
 
-    return linkArray
-
-def testAllLinks(driver):
-    linkArray = storeLinks(driver)
-
-    for link in linkArray:
-        
-        response = requests.get(link)
-        status = response.status_code
-        category = "The request category is: "
-
-        if status >= 100 and status < 200:
-            print("Link: " + link)
-            print("status code for this link: " + str(status))
-            print(category + " Informational")
-            print("No issues/n")
-
-        if status >= 200 and status < 300:
-            print("Link: " + link)
-            print("status code for this link: " + str(status))
-            print(category + " Successful")
-            print("Request successfully received\n")
-
-        if status >= 300 and status < 400:
-            print("Link: " + link)
-            print("status code for this link: " + str(status))
-            print(category + " Redirection")
-            print("Further action needed to navigate here\n")
-
-        if status >= 400 and status < 500:
-            print("Link: " + link)
-            print("status code for this link: " + str(status))
-            print(category + " Client Error")
-            print("Broken Link\n")
-
-        if status >= 500 and status < 600:
-            print("Link: " + link)
-            print("status code for this link: " + str(status))
-            print(category + " Server Error")
-            print("Broken Link\n")
-
-def getAllGoodLinks(driver):
-    linkArray = storeLinks(driver)
-    linkNumber = 0
-
-    for link in linkArray:
-        response = requests.get(link)
-        status = response.status_code
-
-        if status >= 100 and status < 300:
-            linkNumber += 1
-
-            print("Link: " + link)
-            print("The link is not broken")
-            print("Actual status code: " + str(status) + "\n")
-        
-    print("Number of good links: " + str(linkNumber))    
-
-def getAllRedirects(driver):
-    linkArray = storeLinks(driver)
-    linkNumber = 0
-
-    for link in linkArray:
-        response = requests.get(link)
-        status = response.status_code
-
-        if status >= 300 and status < 400:
-            linkNumber += 1
-
-            print("link: " + link)
-            print("This link is a redirect, further actions required")
-            print("Actual status code: " + str(status) + "\n")
-
-    print("Number of redirect links: " + str(linkNumber))
-
-def getAllBrokenLinks(driver):
-    linkArray = storeLinks(driver)
-    linkNumber = 0
-
-    for link in linkArray:
-        response = requests.get(link)
-        status = response.status_code
-
-        if status >= 400 and status < 600:
-            linkNumber += 1
-
-            print("The link is: " + link)
-            print("This link is broken!!")
-            print("Actual status code: " + str(status) + "\n")
-
-    print("Number of broken links: " + str(linkNumber))
+    return linkArray  
 
 # Prints all the links in the page
 def printLinks(driver):
@@ -144,7 +55,19 @@ def printLinks(driver):
 
     print("Number of links: " + str(index))
 
-def getTitle(driver):
-    return driver.title
+def testAllLinks(driver):
+    allLinks = storeLinks(driver)
 
+    for link in allLinks:
+        try:
+            response = requests.get(link)
 
+        except InvalidSchema as schemaErr:
+            print("link: " + link)
+            print("This is either an email or a telephone, there is no HTTP status code\n")
+
+        else:
+            status = response.status_code
+
+            print("The link is: " + link)
+            print("The status code is: " + str(status) + "\n")

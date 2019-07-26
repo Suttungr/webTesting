@@ -1,4 +1,5 @@
 from selenium import webdriver
+import requests
 from utilities import *
 
 if __name__ == "__main__":
@@ -13,13 +14,11 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(chromedriver)
 
     # The URL to test
-    testURL = "https://google.com/"
+    testURL = "https://nau.edu/"
 
     driver.get(testURL)
 
-    getAllGoodLinks(driver)
-    getAllRedirects(driver)
-    getAllBrokenLinks(driver)
+    exceptionLinkTesting(driver)
 
     # Closes the browser window
     driver.close()

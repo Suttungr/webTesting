@@ -67,12 +67,12 @@ def testForGoodLinks(driver):
             if status >= 100 and status < 300:
                 linkNumber += 1
 
-                print("The link is: " + link)
+                print("Link: " + link)
                 print("This link is okay")
                 print("Actual status code is: " + str(status) + "\n\n")
 
         except InvalidSchema as schemaErr:
-            print("link: " + link)
+            print("Link: " + link)
             print("This is either an email or a telephone, there is no HTTP status code\n\n")
 
     print("Number of good links: " + str(linkNumber) + "\n")
@@ -89,13 +89,31 @@ def testForRedirects(driver):
             if status >= 300 and status < 400:
                 redirectNumber += 1
 
-                print("link: " + link)
+                print("Link: " + link)
                 print("This link is a redirect, you may have to take further actions")
                 print("Actual status code is: " + str(status) + "\n\n")
 
         except InvalidSchema as schemaErr:
-            print("link: " + link)
+            print("Link: " + link)
             print("This is either an email or a telephone, there is no HTTP status code\n\n")
 
     print("Number of redirects present: " + str(redirectNumber))
+
+def testForBrokenLinks(driver):
+    allLinks = storeLinks(driver)
+    linkNumber = 0
+
+    for link in allLinks:
+        try:
+            response = requests.get(link)
+            status = response.status_code
+
+            if status >= 400 and status < 1000:
+                linkNumber += 1
+
+                print("Link: " + link)
+                print("This link is broken! Check the status code")
+                print("Actual status code: " + str(status))
+
+    print("Number of broken links: " + str(status))
 

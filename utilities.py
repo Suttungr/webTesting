@@ -16,11 +16,11 @@ def getChromeTitle():
     print("The title is: " + title)
 
 # Function that returns a dict for all executable drivers, see below
-# Make sure to change your path based on your machine
+# Make sure to change your path based on your machine, everyones path will be different!
 def getDriver():
     chromePath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\chromedriver.exe"
     firefoxPath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\geckodriver.exe"
-    operaPath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\operdriver.exe"
+    operaPath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\operadriver.exe"
     edgePath = "C:\\Users\\vws2\Documents\\Testing\\WebDriver\\msedgedriver.exe"
 
     driverDict = {

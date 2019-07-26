@@ -53,3 +53,11 @@ just type *deactivate* .
 
 There is a file present called *requirements.txt* that we will use to download the necessary requirements.
 Simply type *pip install -r requirements.txt* to download all the necessary requirements. Make sure the environment is active.
+
+## Run The Script
+
+Once the venv (virtual environment) is active, type *python main.py* to run the script.
+
+## Known Issues
+
+There is an issue with parsing "tel:" and "mailto:" links as they do not return an HTTP request.

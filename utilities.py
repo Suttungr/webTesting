@@ -97,7 +97,7 @@ def testForRedirects(driver):
             print("Link: " + link)
             print("This is either an email or a telephone, there is no HTTP status code\n\n")
 
-    print("Number of redirects present: " + str(redirectNumber))
+    print("Number of redirects present: " + str(redirectNumber) + "\n")
 
 def testForBrokenLinks(driver):
     allLinks = storeLinks(driver)
@@ -113,7 +113,10 @@ def testForBrokenLinks(driver):
 
                 print("Link: " + link)
                 print("This link is broken! Check the status code")
-                print("Actual status code: " + str(status))
+                print("Actual status code: " + str(status) + "\n\n")
 
-    print("Number of broken links: " + str(status))
+        except InvalidSchema as schemaErr:
+            print("Link: " + link)
+            print("This is either an email or a telephone, there is no HTTP status code\n\n")
 
+    print("Number of broken links: " + str(linkNumber) + "\n")

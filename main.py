@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     driver.get(testURL)
 
-    testForRedirects(driver)
+    testForBrokenLinks(driver)
 
     # Closes the browser window
     driver.close()

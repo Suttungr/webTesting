@@ -55,6 +55,72 @@ def printLinks(driver):
 
     print("Number of links: " + str(index))
 
+def testAllLinks(driver):
+    testAllLinks = storeLinks(driver)
+    linkCount = 0
+    brokenLinks = 0
+    goodLinks = 0
+    redirects = 0
+
+    for link in testAllLinks:
+        try:
+            response = requests.get(link)
+            status = response.status_code
+
+            if status >= 100 and status < 200:
+                linkCount += 1
+                goodLinks += 1
+
+                print("Link: " + link)
+                print("Code type: Informational")
+                print("Actual status code: " + str(status))
+                print("This link is okay, just informational\n\n")
+
+            if status >= 200 and status < 300:
+                linkCount += 1
+                goodLinks += 1
+
+                print("Link: " + link)
+                print("Code type: Success")
+                print("Actual status code: " + str(status))
+                print("This link is successful, not broken\n\n")
+
+            if status >= 300 and status < 400:
+                linkCount += 1
+                redirects += 1
+
+                print("Link: " + link)
+                print("Code type: Redirection")
+                print("Actual status code: " + str(status))
+                print("This link is a redirect, look more into where this link goes\n\n")
+
+            if status >= 400 and status < 500:
+                linkCount += 1
+                brokenLinks += 1
+
+                print("Link: " + link)
+                print("Code type: Client Error")
+                print("Actual status code: " + str(status))
+                print("This link is broken\n\n")
+
+            if status >= 500 and status < 1000:
+                linkCount += 1
+                brokenLinks += 1
+
+                print("Link: " + link)
+                print("Code type: Server Error")
+                print("Actual status code: " + str(status))
+                print("This link is broken\n\n")
+            
+        except InvalidSchema as schemaErr:
+            print("Link: " + link)
+            print("This is either an email or a telephone, there is no HTTP status code\n\n")
+
+    print("Total number of links: " + str(linkCount))
+    print("Number of good links: " + str(goodLinks))
+    print("Number of redirects: " + str(redirects))
+    print("Number of broken links: " + str(brokenLinks))
+
 def testForGoodLinks(driver):
     allLinks = storeLinks(driver)
     linkNumber = 0
